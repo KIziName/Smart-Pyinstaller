@@ -68,9 +68,6 @@ TAG_PREFIX = {
     TAG_ERROR: PREFIX_ERROR,
 }
 
-# 'test' / 'tests' removed on purpose: too many user projects have their own
-# packages with those names, and PyInstaller's --exclude-module matches by
-# top-level name only.
 COMMON_EXCLUDES = (
     'PyQt5', 'PyQt6', 'PySide2', 'PySide6', 'wx',
     'numpy', 'scipy', 'pandas', 'matplotlib',
@@ -94,9 +91,7 @@ def _resolve_self_name() -> str:
         return Path(sys.executable).name
     return Path(globals().get('__file__', 'main.py')).name
 
-
 SELF_NAME = _resolve_self_name()
-
 
 @dataclass
 class BuildOptions:
@@ -109,13 +104,6 @@ class BuildOptions:
 
 
 def collect_imports(root: Path) -> set[str]:
-    """Return top-level module names imported anywhere under *root*.
-
-    Best-effort static scan: any .py file found recursively is parsed with
-    ast and every absolute `import x` / `from x import ...` contributes the
-    first dotted component. Syntax errors and unreadable files are skipped
-    silently — one broken file must not break the whole build.
-    """
     names: set[str] = set()
     skip_dirs = {'build', 'dist', '__pycache__', '.venv', 'venv', '.git'}
 
@@ -440,13 +428,9 @@ class SmartPyInstallerGUI:
             return
 
         self.base_dir = Path(self.folder_var.get()).resolve()
-
-        # Preserve a previously chosen icon if the file still exists.
         prev_icon = self.icon_var.get().strip()
         if prev_icon and Path(prev_icon).exists():
-            # keep it; only clear when folder changed AND icon is outside
             if Path(prev_icon).parent != self.base_dir:
-                # don't silently drop it either — keep as-is, user chose it
                 pass
         else:
             self.icon_var.set("")
@@ -461,12 +445,10 @@ class SmartPyInstallerGUI:
                       TAG_ERROR)
             return
 
-        # AST scan of the whole project — safe to run before we know whether
-        # PyInstaller is available.
         self.used_imports = collect_imports(self.base_dir)
 
         try:
-            import PyInstaller  # noqa: F401
+            import PyInstaller  
             self.pyinstaller_available = True
         except ImportError:
             self.pyinstaller_available = False
@@ -638,8 +620,6 @@ class SmartPyInstallerGUI:
                 self.q_warn("--uac-admin skipped (Windows only)")
 
         if options.smart_excludes:
-            # Re-scan at build time so that files changed after Rescan are
-            # taken into account.
             used = collect_imports(base_dir)
             to_exclude = [m for m in COMMON_EXCLUDES if m not in used]
             skipped = [m for m in COMMON_EXCLUDES if m in used]
