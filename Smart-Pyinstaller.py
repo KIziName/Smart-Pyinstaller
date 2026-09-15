@@ -69,7 +69,8 @@ TAG_PREFIX = {
 }
 
 COMMON_EXCLUDES = (
-    'PyQt5', 'PyQt6', 'PySide2', 'PySide6', 'wx','numpy', 'scipy', 'pandas', 'matplotlib','IPython', 'jupyter', 'notebook', 'nbformat', 'nbconvert','pytest', 'nose', 'doctest','PIL',
+    'PyQt5', 'PyQt6', 'PySide2', 'PySide6', 'wx','numpy', 'scipy', 'pandas', 'matplotlib',
+'IPython', 'jupyter', 'notebook', 'nbformat', 'nbconvert','pytest', 'nose', 'doctest','PIL',
 'Pillow','sphinx','docutils',
 )
 
