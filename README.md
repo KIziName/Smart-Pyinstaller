@@ -27,7 +27,7 @@ and automatic detection of used libraries.
 · Properly terminates the PyInstaller child process when the window is closed.
 
 ## Requirements:
-Python 3.8+
+***Python 3.8+***
 
 · `pip install pyinstaller`
 
@@ -70,7 +70,7 @@ Python 3.8+
 
 ## Требования:
 ***Python 3.8+***
-- "pip install pyinstaller"
+- `pip install pyinstaller`
 
 ## Как пользоваться:
 - Укажите папку с проектом (по умолчанию — текущая директория). Кнопка «Rescan» пересканирует проект.
