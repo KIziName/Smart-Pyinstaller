@@ -237,7 +237,7 @@ class SmartPyInstallerGUI:
         ttk.Label(
             opts,
             text="Candidate excludes: PyQt/PySide, numpy, scipy, pandas, "
-                 "matplotlib, Jupyter, pytest, PIL/setuptools/wheel, …\n"
+                 "matplotlib, Jupyter, pytest, PIL/Pillow,sphinx, docutils.\n"
                  "Modules actually imported anywhere in the project are "
                  "detected via AST and are NOT excluded.",
             foreground=COLOR_LABEL, wraplength=820, justify=tk.LEFT,
