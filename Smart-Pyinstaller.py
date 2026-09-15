@@ -69,12 +69,8 @@ TAG_PREFIX = {
 }
 
 COMMON_EXCLUDES = (
-    'PyQt5', 'PyQt6', 'PySide2', 'PySide6', 'wx',
-    'numpy', 'scipy', 'pandas', 'matplotlib',
-    'IPython', 'jupyter', 'notebook', 'nbformat', 'nbconvert',
-    'pytest', 'nose', 'doctest',
-    'setuptools', 'PIL', 'Pillow', 'wheel', 'pkg_resources',
-    'sphinx', 'docutils',
+    'PyQt5', 'PyQt6', 'PySide2', 'PySide6', 'wx','numpy', 'scipy', 'pandas', 'matplotlib','IPython', 'jupyter', 'notebook', 'nbformat', 'nbconvert','pytest', 'nose', 'doctest','PIL',
+'Pillow','sphinx','docutils',
 )
 
 IS_WINDOWS = sys.platform == 'win32'
